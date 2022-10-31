@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bc0c56ce-008a-491a-9f13-3a67bcb9741c" name="Changes" comment="added UI class and stuff">
+    <list default="true" id="bc0c56ce-008a-491a-9f13-3a67bcb9741c" name="Changes" comment="Add and delete user">
+      <change afterPath="$PROJECT_DIR$/src/domain/FriendShip.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/domain/validators/FriendshipValidator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repository/file/AbstractFileRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/file/AbstractFileRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repository/memory/InMemoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/memory/InMemoryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/validators/UserValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/validators/UserValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repository/file/UserFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/file/UserFile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/Service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/ConsoleUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/ConsoleUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/UI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +33,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectId" id="2Ghzo1buGP4pvPT1ia8fZffnrMK" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -59,6 +68,13 @@
       <workItem from="1667174159678" duration="3127000" />
       <workItem from="1667208610931" duration="676000" />
       <workItem from="1667221044451" duration="2249000" />
+      <workItem from="1667225273133" duration="1954000" />
+      <workItem from="1667227391081" duration="24000" />
+      <workItem from="1667228888882" duration="34000" />
+      <workItem from="1667243244089" duration="820000" />
+      <workItem from="1667245566768" duration="331000" />
+      <workItem from="1667246182577" duration="316000" />
+      <workItem from="1667247886914" duration="4008000" />
     </task>
     <task id="LOCAL-00001" summary="Schelet aplicatie">
       <created>1666856637785</created>
@@ -74,7 +90,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667177227450</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Add and delete user">
+      <created>1667225313387</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1667225313387</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -94,6 +117,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Schelet aplicatie" />
     <MESSAGE value="added UI class and stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="added UI class and stuff" />
+    <MESSAGE value="Add and delete user" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add and delete user" />
   </component>
 </project>

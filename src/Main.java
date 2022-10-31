@@ -1,4 +1,6 @@
+import domain.FriendShip;
 import domain.User;
+import domain.validators.FriendshipValidator;
 import domain.validators.UserValidator;
 import repository.Repository;
 import repository.memory.InMemoryRepository;
@@ -6,16 +8,20 @@ import service.Service;
 import ui.ConsoleUI;
 import ui.UI;
 
+import java.util.UUID;
+
 public class Main {
     public static void main(String[] args) {
 
-        UserValidator userValidator = new UserValidator();
+        Repository<UUID, User> userRepo = new InMemoryRepository<>(new UserValidator());
 
-        Repository<Long, User> repo = new InMemoryRepository<>(userValidator);
+        Repository<UUID, FriendShip> friendshipRepo = new InMemoryRepository<>(new FriendshipValidator());
 
-        Service<Long, User> srv = new Service<>(repo);
+        Service<UUID, User> srv = new Service<>(userRepo, friendshipRepo);
 
         UI console = new ConsoleUI(srv);
+
+        console.start();
     }
 }
 

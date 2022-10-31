@@ -4,6 +4,7 @@ import domain.User;
 import service.Service;
 
 import java.util.Scanner;
+import java.util.UUID;
 
 public class ConsoleUI extends AbstractUI {
 
@@ -27,11 +28,16 @@ public class ConsoleUI extends AbstractUI {
         System.out.println("2 - Add a user");
         System.out.println("3 - Remove a user by its ID");
         System.out.println("4 - Add a friendship");
-        System.out.println("5 - Remove a friendship\n");
+        System.out.println("5 - Remove a friendship");
+        System.out.println("6 - Show all users");
+        System.out.println("7 - Show all friendships");
+        System.out.println("8 - Number of communities");
+        System.out.println("9 - Show the most sociable community");
 
 
         while(true)
         {
+            System.out.print("Give a command: ");
             int command = cin.nextInt();
 
             switch (command)
@@ -45,7 +51,11 @@ public class ConsoleUI extends AbstractUI {
                     System.out.println("2 - Add a user");
                     System.out.println("3 - Remove a user by its ID");
                     System.out.println("4 - Add a friendship");
-                    System.out.println("5 - Remove a friendship\n");
+                    System.out.println("5 - Remove a friendship");
+                    System.out.println("6 - Show all users");
+                    System.out.println("7 - Show all friendships");
+                    System.out.println("8 - Number of communities");
+                    System.out.println("9 - Show the most sociable community");
                     break;
 
                 case 2:
@@ -54,6 +64,28 @@ public class ConsoleUI extends AbstractUI {
                     break;
 
                 case 3:
+                    UUID id = readID();
+                    srv.deleteUser(id);
+                    break;
+
+                case 4:
+                    break;
+
+                case 5:
+                    break;
+
+                case 6:
+                    Iterable<User> it = srv.getAllUsers();
+                    it.forEach(System.out::println);
+                    break;
+
+                case 7:
+                    break;
+
+                case 8:
+                    break;
+
+                case 9:
                     break;
                     
                 default:
@@ -68,8 +100,22 @@ public class ConsoleUI extends AbstractUI {
         String firstname = cin.next();
         System.out.print("Lastname: ");
         String lastname = cin.next();
+        System.out.print("email: ");
+        String email = cin.next();
 
-        User user = new User(firstname, lastname);
+        User user = new User(firstname, lastname, email);
         return user;
     }
+
+    @Override
+    public UUID readID() {
+        System.out.print("Give an ID: ");
+        String id = cin.next();
+
+        return UUID.fromString(id);
+    }
+
+
 }
+
+

@@ -2,6 +2,8 @@ package ui;
 
 import domain.User;
 
+import java.util.UUID;
+
 public interface UI {
     /**
      * starts the user interface
@@ -9,4 +11,6 @@ public interface UI {
     void start();
 
     User readUser();
+
+    UUID readID();
 }

@@ -1,16 +1,23 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
-public class User extends Entity<Long>{
+public class User extends Entity<UUID> {
     private String firstName;
     private String lastName;
+
+    private String email;
     private List<User> friends;
 
-    public User(String firstName, String lastName) {
+    public User(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
+        friends = new ArrayList<>();
+        this.setId(UUID.randomUUID());
     }
 
     public String getFirstName() {
@@ -29,16 +36,25 @@ public class User extends Entity<Long>{
         this.lastName = lastName;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public List<User> getFriends() {
         return friends;
     }
 
     @Override
     public String toString() {
-        return "Utilizator{" +
+        return "Utilizator {" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", friends=" + friends +
+                ", friends=" + friends + '\'' +
+                ", ID=" + id +
                 '}';
     }
 
@@ -47,9 +63,7 @@ public class User extends Entity<Long>{
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         User that = (User) o;
-        return getFirstName().equals(that.getFirstName()) &&
-                getLastName().equals(that.getLastName()) &&
-                getFriends().equals(that.getFriends());
+        return id.equals(that.getId());
     }
 
     @Override
