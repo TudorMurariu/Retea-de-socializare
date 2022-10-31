@@ -10,7 +10,8 @@ import java.util.Arrays;
 import java.util.List;
 
 
-///Aceasta clasa implementeaza sablonul de proiectare Template Method; puteti inlucui solutia propusa cu un Factori (vezi mai jos)
+///Aceasta clasa implementeaza sablonul de proiectare Template Method; puteti inlucui solutia
+// propusa cu un Factori (vezi mai jos)
 public abstract class AbstractFileRepository<ID, E extends Entity<ID>> extends InMemoryRepository<ID,E> {
     String fileName;
     public AbstractFileRepository(String fileName, Validator<E> validator) {
