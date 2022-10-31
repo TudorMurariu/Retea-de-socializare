@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bc0c56ce-008a-491a-9f13-3a67bcb9741c" name="Changes" comment="Schelet aplicatie" />
+    <list default="true" id="bc0c56ce-008a-491a-9f13-3a67bcb9741c" name="Changes" comment="Schelet aplicatie">
+      <change afterPath="$PROJECT_DIR$/src/service/Service.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/AbstractUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/ConsoleUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/validators/UtilizatorValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/validators/UserValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repository/Repository0.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/Repository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repository/file/AbstractFileRepository0.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/file/AbstractFileRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repository/file/UserFile0.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/file/UserFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repository/memory/InMemoryRepository0.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/memory/InMemoryRepository.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,6 +23,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -31,7 +45,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false"
+    "WebServerToolWindowFactoryState": "false",
+    "nodejs_package_manager_path": "npm"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -44,6 +59,10 @@
       <updated>1666855778906</updated>
       <workItem from="1666855780837" duration="194000" />
       <workItem from="1666856045364" duration="629000" />
+      <workItem from="1666856845506" duration="168000" />
+      <workItem from="1666859373976" duration="982000" />
+      <workItem from="1666861261275" duration="2095000" />
+      <workItem from="1667174159678" duration="2567000" />
     </task>
     <task id="LOCAL-00001" summary="Schelet aplicatie">
       <created>1666856637785</created>

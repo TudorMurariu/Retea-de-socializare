@@ -2,19 +2,19 @@ package repository.memory;
 
 import domain.Entity;
 import domain.validators.Validator;
-import repository.Repository0;
+import repository.Repository;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class InMemoryRepository0<ID, E extends Entity<ID>> implements Repository0<ID,E> {
+public class InMemoryRepository<ID, E extends Entity<ID>> implements Repository<ID,E> {
 
     private Validator<E> validator;
     Map<ID,E> entities;
 
-    public InMemoryRepository0(Validator<E> validator) {
+    public InMemoryRepository(Validator<E> validator) {
         this.validator = validator;
-        entities=new HashMap<ID,E>();
+        entities = new HashMap<ID,E>();
     }
 
     @Override
@@ -43,7 +43,14 @@ public class InMemoryRepository0<ID, E extends Entity<ID>> implements Repository
 
     @Override
     public E delete(ID id) {
-        return null;
+        if(id == null)
+            throw new IllegalArgumentException("entity must be not null!");
+
+        E entity = entities.get(id);
+        if(entity == null)
+            return null;
+
+        return entities.remove(entity);
     }
 
     @Override
@@ -56,11 +63,10 @@ public class InMemoryRepository0<ID, E extends Entity<ID>> implements Repository
         entities.put(entity.getId(),entity);
 
         if(entities.get(entity.getId()) != null) {
-            entities.put(entity.getId(),entity);
+            entities.put(entity.getId(), entity);
             return null;
         }
         return entity;
-
     }
 
 }

@@ -2,7 +2,7 @@ package repository.file;
 
 import domain.Entity;
 import domain.validators.Validator;
-import repository.memory.InMemoryRepository0;
+import repository.memory.InMemoryRepository;
 
 import java.io.*;
 
@@ -11,9 +11,9 @@ import java.util.List;
 
 
 ///Aceasta clasa implementeaza sablonul de proiectare Template Method; puteti inlucui solutia propusa cu un Factori (vezi mai jos)
-public abstract class AbstractFileRepository0<ID, E extends Entity<ID>> extends InMemoryRepository0<ID,E> {
+public abstract class AbstractFileRepository<ID, E extends Entity<ID>> extends InMemoryRepository<ID,E> {
     String fileName;
-    public AbstractFileRepository0(String fileName, Validator<E> validator) {
+    public AbstractFileRepository(String fileName, Validator<E> validator) {
         super(validator);
         this.fileName=fileName;
         loadData();

@@ -5,9 +5,9 @@ import domain.validators.Validator;
 
 import java.util.List;
 
-public class UserFile0 extends AbstractFileRepository0<Long, User> {
+public class UserFile extends AbstractFileRepository<Long, User> {
 
-    public UserFile0(String fileName, Validator<User> validator) {
+    public UserFile(String fileName, Validator<User> validator) {
         super(fileName, validator);
     }
 

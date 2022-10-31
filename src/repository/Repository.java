@@ -9,7 +9,7 @@ import domain.validators.ValidationException;
  * @param <E> -  type of entities saved in repository
  */
 
-public interface Repository0<ID, E extends Entity<ID>> {
+public interface Repository<ID, E extends Entity<ID>> {
 
     /**
      *

@@ -56,4 +56,15 @@ public class User extends Entity<Long>{
     public int hashCode() {
         return Objects.hash(getFirstName(), getLastName(), getFriends());
     }
+
+    // adds a new friend
+    public void addFriend(User u) {
+        friends.add(u);
+    }
+
+    // deletes a friend
+    public boolean removeFriend(User u) {
+        return friends.remove(u);
+    }
+
 }
