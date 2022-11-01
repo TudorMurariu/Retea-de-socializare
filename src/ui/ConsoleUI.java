@@ -1,7 +1,9 @@
 package ui;
 
+import domain.FriendShip;
 import domain.User;
 import service.Service;
+import service.Service0;
 
 import java.util.Scanner;
 import java.util.UUID;
@@ -9,7 +11,7 @@ import java.util.UUID;
 public class ConsoleUI extends AbstractUI {
 
     private Scanner cin;
-    public ConsoleUI(Service srv) {
+    public ConsoleUI(Service<UUID> srv) {
         super(srv);
         cin = new Scanner(System.in);
     }
@@ -34,6 +36,7 @@ public class ConsoleUI extends AbstractUI {
         System.out.println("8 - Number of communities");
         System.out.println("9 - Show the most sociable community");
 
+        UUID id1, id2;
 
         while(true)
         {
@@ -69,9 +72,15 @@ public class ConsoleUI extends AbstractUI {
                     break;
 
                 case 4:
+                    id1 = readID();
+                    id2 = readID();
+                    srv.createFriendship(id1, id2);
                     break;
 
                 case 5:
+                    id1 = readID();
+                    id2 = readID();
+                    srv.deleteFriendship(id1, id2);
                     break;
 
                 case 6:
@@ -80,6 +89,8 @@ public class ConsoleUI extends AbstractUI {
                     break;
 
                 case 7:
+                    Iterable<FriendShip> itf = srv.getAllFriendships();
+                    itf.forEach(System.out::println);
                     break;
 
                 case 8:
@@ -94,6 +105,14 @@ public class ConsoleUI extends AbstractUI {
         }
     }
 
+    /**
+     * Reads a User from the console and returns it.
+     *
+     * @return  The User that was read.
+     *
+     * @throws
+     *
+     */
     @Override
     public User readUser() {
         System.out.print("Firstname: ");
@@ -106,6 +125,16 @@ public class ConsoleUI extends AbstractUI {
         User user = new User(firstname, lastname, email);
         return user;
     }
+
+
+    /**
+     * Reads a UUID from the console and returns it.
+     *
+     * @return  The ID that was read.
+     *
+     * @throws
+     *
+     */
 
     @Override
     public UUID readID() {

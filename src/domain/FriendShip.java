@@ -29,4 +29,13 @@ public class FriendShip extends Entity<UUID> {
     public void setUser2(User user2) {
         this.user2 = user2;
     }
+
+    @Override
+    public String toString() {
+        return "FriendShip {" +
+                "user1=" + user1 +
+                ", user2=" + user2 +
+                ", id=" + id +
+                '}';
+    }
 }

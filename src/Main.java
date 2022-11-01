@@ -5,6 +5,7 @@ import domain.validators.UserValidator;
 import repository.Repository;
 import repository.memory.InMemoryRepository;
 import service.Service;
+import service.Service0;
 import ui.ConsoleUI;
 import ui.UI;
 
@@ -17,7 +18,7 @@ public class Main {
 
         Repository<UUID, FriendShip> friendshipRepo = new InMemoryRepository<>(new FriendshipValidator());
 
-        Service<UUID, User> srv = new Service<>(userRepo, friendshipRepo);
+        Service<UUID> srv = new Service0<>(userRepo, friendshipRepo);
 
         UI console = new ConsoleUI(srv);
 

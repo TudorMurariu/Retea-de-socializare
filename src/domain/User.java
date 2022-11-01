@@ -17,6 +17,7 @@ public class User extends Entity<UUID> {
         this.lastName = lastName;
         this.email = email;
         friends = new ArrayList<>();
+        // generates a random unique ID
         this.setId(UUID.randomUUID());
     }
 
