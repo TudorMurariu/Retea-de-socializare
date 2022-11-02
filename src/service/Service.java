@@ -47,6 +47,7 @@ public interface Service<ID> {
 
 
     /**
+     * The function deletes a friendship between two users
      *  @param email1 and
      *  @param email2 - the emails of the user we have to create a friendship between
      *
@@ -72,8 +73,9 @@ public interface Service<ID> {
 
     /**
      * Adds predefined users and friendships
+     * @param i : int - represents what iteration of predefined values we add to the repos
      */
-    void add_Predefined_Values();
+    void add_Predefined_Values(int i);
 
     /**
      * @return an int that represents the number of communities
@@ -81,4 +83,11 @@ public interface Service<ID> {
     int numberOfCommunities();
 
 
+    /**
+     * Returns the most sociable community
+     * the most sociable community is the community of users with the longest path
+     *
+     * @return an Iterable of users
+     */
+    Iterable<User> mostSociableCommunity();
 }

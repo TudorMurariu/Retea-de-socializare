@@ -7,7 +7,6 @@ import domain.validators.ValidationException;
 import repository.Repository;
 
 import java.util.*;
-//TODO : de schimbdat din stergeri dupa id-uri in stergeri dupa email!!!!!!!!!
 public class Service0 implements Service<UUID>{
 
     private Repository userRepo;
@@ -91,7 +90,7 @@ public class Service0 implements Service<UUID>{
 
             u1 = getUserByEmail(email1);
             u2 = getUserByEmail(email2);
-            if(u1 == null || u2 == null || u1 == u2)
+            if(u1 == null || u2 == null || u1.equals(u2))
                 throw new ValidationException("There are no two users with these two emails!");
 
             f = friendshipRepo.save(new FriendShip(u1, u2));
@@ -113,6 +112,13 @@ public class Service0 implements Service<UUID>{
 
     /**
      * The function deletes a friendship between two users
+     *  @param email1 and
+     *  @param email2 - the emails of the user we have to create a friendship between
+     *
+     *  @return the friendship if it exists
+     *          null otherwise
+     *  @throws IllegalArgumentException
+     *                if any of the emails are null
      */
     @Override
     public Entity<UUID> deleteFriendship(String email1, String email2) {
@@ -121,14 +127,18 @@ public class Service0 implements Service<UUID>{
         try{
             if(email1 == null || email2 == null)
                 throw new IllegalArgumentException("Emails must not be null!");
-
             u1 = getUserByEmail(email1);
             u2 = getUserByEmail(email2);
 
+            if(u1 == null || u2 == null || u1.equals(u2))
+                throw new ValidationException("There are no two users with these two emails!!");
+
             Iterable<FriendShip> l = friendshipRepo.findAll();
             for(FriendShip el : l)
-                if(el.getUser1().getId() == u1.getId() && el.getUser2().getId() == u2.getId()
-                        || el.getUser1().getId() == u2.getId() && el.getUser2().getId() == u1.getId())
+                if(
+                        (el.getUser1().getId().equals(u1.getId()) && el.getUser2().getId().equals(u2.getId()))
+                        || (el.getUser1().getId().equals(u2.getId()) && el.getUser2().getId().equals(u1.getId()))
+                )
                 {
                     f = friendshipRepo.delete(el.getId());
                     break;
@@ -167,31 +177,105 @@ public class Service0 implements Service<UUID>{
 
     /**
      * Adds predefined users and friendships
+     * @param i : int - represents what iteration of predefined values we add to the repos
      */
     @Override
-    public void add_Predefined_Values() {
-        User u1 = new User("Marian", "Popescu", "marian.popescu@yahoo.com");
-        User u2 = new User("Gabi", "Pislaru", "gabriel.pislaru@yahoo.com");
-        User u3 = new User("Stefan", "Nastasa", "stefan.nastasa@yahoo.com");
-        User u4 = new User("Stefan", "Atumulesei", "stefan.atumulesei@gmail.com");
-        User u5 = new User("Ana", "Maria", "ana.maria@gmail.com");
-        User u6 = new User("Nicu", "Margine", "nicu.hanganu@yahoo.com");
-        User u7 = new User("Nicu", "Pop", "nicu.pop@yahoo.com");
+    public void add_Predefined_Values(int i) {
+        switch (i)
+        {
+            case 1:
+                // Doua cuminitati, cu drumul maxim fiind 2
+                {
+                    User u1 = new User("Marian", "Popescu", "marian.popescu@yahoo.com");
+                    User u2 = new User("Gabi", "Pislaru", "gabriel.pislaru@yahoo.com");
+                    User u3 = new User("Stefan", "Nastasa", "stefan.nastasa@yahoo.com");
+                    User u4 = new User("Stefan", "Atumulesei", "stefan.atumulesei@gmail.com");
+                    User u5 = new User("Ana", "Maria", "ana.maria@gmail.com");
+                    User u6 = new User("Nicu", "Margine", "nicu.hanganu@yahoo.com");
+                    User u7 = new User("Nicu", "Pop", "nicu.pop@yahoo.com");
 
-        this.addUser(u1);
-        this.addUser(u2);
-        this.addUser(u3);
-        this.addUser(u4);
-        this.addUser(u5);
-        this.addUser(u6);
-        this.addUser(u7);
+                    this.addUser(u1);
+                    this.addUser(u2);
+                    this.addUser(u3);
+                    this.addUser(u4);
+                    this.addUser(u5);
+                    this.addUser(u6);
+                    this.addUser(u7);
 
-        this.createFriendship(u1.getEmail(), u2.getEmail());
-        this.createFriendship(u1.getEmail(), u7.getEmail());
+                    this.createFriendship(u1.getEmail(), u2.getEmail());
+                    this.createFriendship(u1.getEmail(), u7.getEmail());
 
-        this.createFriendship(u6.getEmail(), u5.getEmail());
-        this.createFriendship(u5.getEmail(), u4.getEmail());
-        this.createFriendship(u4.getEmail(), u3.getEmail());
+                    this.createFriendship(u6.getEmail(), u5.getEmail());
+                    this.createFriendship(u5.getEmail(), u4.getEmail());
+                    this.createFriendship(u4.getEmail(), u3.getEmail());
+                }
+                break;
+
+            case 2:
+                // Doua cuminitati, cu drumul maxim fiind 5
+                {
+                    User u1 = new User("Marian", "Popescu", "marian.popescu@yahoo.com");
+                    User u2 = new User("Gabi", "Pislaruu", "gabriel.pislaru@yahoo.com");
+                    User u3 = new User("Stefan", "Nastasa", "stefan.nastasa@yahoo.com");
+                    User u4 = new User("Stefan", "Atumulese", "stefan.atumulesei@gmail.com");
+                    User u5 = new User("Ana", "Maria", "ana.maria@gmail.com");
+                    User u6 = new User("Nicu", "Margine", "nicu.hanganu@yahoo.com");
+                    User u7 = new User("Nicu", "Pop", "nicu.pop@yahoo.com");
+                    User u8 = new User("Matei", "Hanganu", "matei.hanga@yahoo.com");
+
+                    this.addUser(u1);
+                    this.addUser(u2);
+                    this.addUser(u3);
+                    this.addUser(u4);
+                    this.addUser(u5);
+                    this.addUser(u6);
+                    this.addUser(u7);
+                    this.addUser(u8);
+
+                    this.createFriendship(u1.getEmail(), u2.getEmail());
+
+                    this.createFriendship(u3.getEmail(), u4.getEmail());
+                    this.createFriendship(u4.getEmail(), u5.getEmail());
+                    this.createFriendship(u5.getEmail(), u6.getEmail());
+                    this.createFriendship(u6.getEmail(), u7.getEmail());
+                    this.createFriendship(u7.getEmail(), u8.getEmail());
+                }
+                break;
+
+            case 3:
+                {
+                    // O comunitate, drum maxim de 3
+                    User u1 = new User("Marian", "Popescu", "marian.popescu@yahoo.com");
+                    User u2 = new User("Gabi", "Pislaruu", "gabriel.pislaru@yahoo.com");
+                    User u3 = new User("Stefan", "Nastasa", "stefan.nastasa@yahoo.com");
+                    User u4 = new User("Stefan", "Atumulese", "stefan.atumulesei@gmail.com");
+                    this.addUser(u1);
+                    this.addUser(u2);
+                    this.addUser(u3);
+                    this.addUser(u4);
+                    this.createFriendship(u1.getEmail(), u2.getEmail());
+                    this.createFriendship(u2.getEmail(), u3.getEmail());
+                    this.createFriendship(u3.getEmail(), u4.getEmail());
+                }
+                break;
+
+            case 4:
+                {
+                    // 4 comunitati , drum max de 0
+                    User u1 = new User("Marian", "Popescu", "marian.popescu@yahoo.com");
+                    User u2 = new User("Gabi", "Pislaruu", "gabriel.pislaru@yahoo.com");
+                    User u3 = new User("Stefan", "Nastasa", "stefan.nastasa@yahoo.com");
+                    User u4 = new User("Stefan", "Atumulese", "stefan.atumulesei@gmail.com");
+                    this.addUser(u1);
+                    this.addUser(u2);
+                    this.addUser(u3);
+                    this.addUser(u4);
+                }
+                break;
+
+            default:
+                System.out.println("There is not iteration with this number!");
+        }
     }
 
     /**
@@ -211,6 +295,7 @@ public class Service0 implements Service<UUID>{
             {
                 ++count;
                 DFS(u, set);
+                //System.out.println(DFS(u, set));
             }
 
         return count;
@@ -218,13 +303,23 @@ public class Service0 implements Service<UUID>{
 
     /**
      * a simple DFS algorithm
+     *
+     * @return a list of all the users in the DF Search
      */
-    private void DFS(User u, Set<User> set) {
+    private List<User> DFS(User u, Set<User> set) {
+        List<User> list = new ArrayList<>();
+        list.add(u);
         set.add(u);
 
         for(User f : u.getFriends())
             if(!set.contains(f))
-                DFS(f, set);
+            {
+                List<User> l = DFS(f, set);
+                for(User x : l)
+                    list.add(x);
+            }
+
+        return list;
     }
 
     /**
@@ -236,9 +331,49 @@ public class Service0 implements Service<UUID>{
     public User getUserByEmail(String email) {
         Iterable<User> it = userRepo.findAll();
         for(User u : it)
-            if(u.getEmail() == email)
+            if(u.getEmail().equals(email))
                 return u;
         return null;
     }
 
+    /**
+     * Returns the most sociable community
+     * the most sociable community is the community of users with the longest path
+     *
+     * @return an Iterable of users
+     */
+    public Iterable<User> mostSociableCommunity() {
+        Iterable<User> it = userRepo.findAll();
+        Set<User> set = new HashSet<>();
+
+        int max = -1;
+        List<User> rez = null;
+        for(User u : it)
+            if(!set.contains(u))
+            {
+                List<User> aux = DFS(u, set);
+                int l = longestPath(aux);
+                if(l > max)
+                {
+                    rez = aux;
+                    max = l;
+                }
+            }
+
+        return rez;
+    }
+
+    /**
+     * We look for the longest path in the community
+     *
+     * @param nodes - a list of all the users in a community
+     *
+     * @return the longest path
+     */
+    private int longestPath(List<User> nodes) {
+
+
+
+        return 0;
+    }
 }

@@ -28,7 +28,7 @@ public class ConsoleUI extends AbstractUI {
         System.out.println("0 - exit");
         System.out.println("1 - show all functionalities");
         System.out.println("2 - Add a user");
-        System.out.println("3 - Remove a user by its ID");
+        System.out.println("3 - Remove a user by its email");
         System.out.println("4 - Add a friendship");
         System.out.println("5 - Remove a friendship");
         System.out.println("6 - Show all users");
@@ -53,7 +53,7 @@ public class ConsoleUI extends AbstractUI {
                     System.out.println("The functionalities are : ");
                     System.out.println("1 - show all functionalities");
                     System.out.println("2 - Add a user");
-                    System.out.println("3 - Remove a user by its ID");
+                    System.out.println("3 - Remove a user by its email");
                     System.out.println("4 - Add a friendship");
                     System.out.println("5 - Remove a friendship");
                     System.out.println("6 - Show all users");
@@ -100,10 +100,14 @@ public class ConsoleUI extends AbstractUI {
                     break;
 
                 case 9:
+                    System.out.println("The most sociable community is:");
+                    srv.mostSociableCommunity().forEach(System.out::println);
                     break;
 
                 case 10:
-                    srv.add_Predefined_Values();
+                    System.out.print("Choose what iteration of predefined values: ");
+                    int i = cin.nextInt();
+                    srv.add_Predefined_Values(i);
                     break;
                     
                 default:
@@ -116,8 +120,6 @@ public class ConsoleUI extends AbstractUI {
      * Reads a User from the console and returns it.
      *
      * @return  The User that was read.
-     *
-     * @throws
      *
      */
     @Override

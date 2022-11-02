@@ -11,12 +11,15 @@ public class UserValidator implements Validator<User> {
     }
 
     /**
-     * The first name must be less than 100 characters
+     * It must not be null
+     * the first name must be less than 100 characters
      * it mustn't be empty
      * it's first character must be a letter
      */
     private void validateFirstName(String firstName) throws ValidationException {
-        if(firstName.length() >= 100)
+        if(firstName == null)
+            throw new ValidationException("First Name must not be null!");
+        else if(firstName.length() >= 100)
             throw new ValidationException("First Name too long");
         else if(firstName.isEmpty())
             throw new ValidationException("First Name must not be empty");
@@ -25,12 +28,15 @@ public class UserValidator implements Validator<User> {
     }
 
     /**
-     * The first name must be less than 100 characters
+     * It must not be null
+     * the first name must be less than 100 characters
      * it mustn't be empty
      * it's first character must be a letter
      */
     private void validateLastName(String lastName) throws ValidationException {
-        if(lastName.length() >= 100)
+        if(lastName == null)
+            throw new ValidationException("First Name must not be null!");
+        else if(lastName.length() >= 100)
             throw new ValidationException("First Name too long");
         else if(lastName.isEmpty())
             throw new ValidationException("First Name must not be empty");
@@ -39,13 +45,16 @@ public class UserValidator implements Validator<User> {
     }
 
     /**
-     * The first name must be less than 100 characters
+     * It must not be null
+     * the first name must be less than 100 characters
      * it mustn't be empty
      * it must contain one and only one @ character
      * --- The email must also be unique, for that we will check in the service
      */
     private void validateEmail(String email) throws ValidationException {
-        if(email.length() >= 100)
+        if(email == null)
+            throw new ValidationException("First Name must not be null!");
+        else if(email.length() >= 100)
             throw new ValidationException("First Name too long");
         else if(email.isEmpty())
             throw new ValidationException("First Name must not be empty");

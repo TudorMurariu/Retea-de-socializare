@@ -1,8 +1,6 @@
 package domain;
 
-import domain.Entity;
-import domain.User;
-
+import java.util.Objects;
 import java.util.UUID;
 
 public class FriendShip extends Entity<UUID> {
@@ -38,5 +36,19 @@ public class FriendShip extends Entity<UUID> {
                 ", user2=" + user2 +
                 ", id=" + id +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof FriendShip))
+            return false;
+        FriendShip that = (FriendShip) o;
+        return id.equals(that.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getUser1(), getUser2());
     }
 }

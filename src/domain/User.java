@@ -65,7 +65,7 @@ public class User extends Entity<UUID> {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getFirstName(), getLastName(), getFriends());
+        return Objects.hash(getFirstName(), getLastName(), getEmail());
     }
 
     // adds a new friend

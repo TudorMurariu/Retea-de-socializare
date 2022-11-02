@@ -51,7 +51,7 @@ public class InMemoryRepository<ID, E extends Entity<ID>> implements Repository<
         if(entity == null)
             return null;
 
-        return entities.remove(entity);
+        return entities.remove(entity.getId());
     }
 
     @Override
