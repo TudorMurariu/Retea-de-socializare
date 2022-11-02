@@ -5,6 +5,8 @@ import domain.FriendShip;
 import domain.User;
 import domain.validators.ValidationException;
 
+import java.util.List;
+
 public interface Service<ID> {
 
     /**
@@ -87,7 +89,12 @@ public interface Service<ID> {
      * Returns the most sociable community
      * the most sociable community is the community of users with the longest path
      *
-     * @return an Iterable of users
+     * @return an Iterable of all the most sociable communities users
      */
-    Iterable<User> mostSociableCommunity();
+    Iterable<Iterable<User>> mostSociableCommunity();
+
+    /**
+     * @returns a list of all the communities
+     */
+    public List<List<User>> getAllCommunities();
 }

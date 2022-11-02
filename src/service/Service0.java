@@ -52,13 +52,32 @@ public class Service0 implements Service<UUID>{
      * if there are anny exception we will show an error message
      * returns the user if we found one
      * and null otherwise
+     *
+     * we also have to delete all the friendships that include this user in the friendshipRepo.
      */
     @Override
     public Entity<UUID> deleteUser(String email) {
-        Entity<UUID> u = null;
+        User u = null;
         try{
             u = getUserByEmail(email);
-            u = userRepo.delete(u.getId());
+            if(u == null) {
+                System.err.println("Nu exista nici un user cu acest id!");
+                return null;
+            }
+
+            for(User friend : u.getFriends())
+            {
+                for(FriendShip f : (Iterable<FriendShip>) friendshipRepo.findAll())
+                    if((f.getUser1().equals(u) && f.getUser2().equals(friend)) || (f.getUser1().equals(friend) && f.getUser2().equals(u)))
+                    {
+                        friendshipRepo.delete(f.getId());
+                        break;
+                    }
+                friend.removeFriend(u);
+            }
+
+
+            u = (User) userRepo.delete(u.getId());
         }
         catch (Exception e) {
             System.err.println(e);
@@ -187,7 +206,7 @@ public class Service0 implements Service<UUID>{
                 // Doua cuminitati, cu drumul maxim fiind 2
                 {
                     User u1 = new User("Marian", "Popescu", "marian.popescu@yahoo.com");
-                    User u2 = new User("Gabi", "Pislaru", "gabriel.pislaru@yahoo.com");
+                    User u2 = new User("Gabi", "Paslaru", "gabriel.paslaru@yahoo.com");
                     User u3 = new User("Stefan", "Nastasa", "stefan.nastasa@yahoo.com");
                     User u4 = new User("Stefan", "Atumulesei", "stefan.atumulesei@gmail.com");
                     User u5 = new User("Ana", "Maria", "ana.maria@gmail.com");
@@ -215,7 +234,7 @@ public class Service0 implements Service<UUID>{
                 // Doua cuminitati, cu drumul maxim fiind 5
                 {
                     User u1 = new User("Marian", "Popescu", "marian.popescu@yahoo.com");
-                    User u2 = new User("Gabi", "Pislaruu", "gabriel.pislaru@yahoo.com");
+                    User u2 = new User("Gabi", "Paslaruu", "gabriel.paslaru@yahoo.com");
                     User u3 = new User("Stefan", "Nastasa", "stefan.nastasa@yahoo.com");
                     User u4 = new User("Stefan", "Atumulese", "stefan.atumulesei@gmail.com");
                     User u5 = new User("Ana", "Maria", "ana.maria@gmail.com");
@@ -246,7 +265,7 @@ public class Service0 implements Service<UUID>{
                 {
                     // O comunitate, drum maxim de 3
                     User u1 = new User("Marian", "Popescu", "marian.popescu@yahoo.com");
-                    User u2 = new User("Gabi", "Pislaruu", "gabriel.pislaru@yahoo.com");
+                    User u2 = new User("Gabi", "Paslaruu", "gabriel.paslaru@yahoo.com");
                     User u3 = new User("Stefan", "Nastasa", "stefan.nastasa@yahoo.com");
                     User u4 = new User("Stefan", "Atumulese", "stefan.atumulesei@gmail.com");
                     this.addUser(u1);
@@ -263,7 +282,7 @@ public class Service0 implements Service<UUID>{
                 {
                     // 4 comunitati , drum max de 0
                     User u1 = new User("Marian", "Popescu", "marian.popescu@yahoo.com");
-                    User u2 = new User("Gabi", "Pislaruu", "gabriel.pislaru@yahoo.com");
+                    User u2 = new User("Gabi", "Paslaruu", "gabriel.paslaru@yahoo.com");
                     User u3 = new User("Stefan", "Nastasa", "stefan.nastasa@yahoo.com");
                     User u4 = new User("Stefan", "Atumulese", "stefan.atumulesei@gmail.com");
                     this.addUser(u1);
@@ -323,6 +342,22 @@ public class Service0 implements Service<UUID>{
     }
 
     /**
+     * @returns a list of all the communities
+     */
+    @Override
+    public List<List<User>> getAllCommunities() {
+        Iterable<User> it = userRepo.findAll();
+        Set<User> set = new HashSet<>();
+
+        List<List<User>> l = new ArrayList<>();
+
+        for(User u : it)
+            if(!set.contains(u))
+                l.add(DFS(u, set));
+
+        return l;
+    }
+    /**
      * @param email a string that represents the user's email we have to find
      *
      * @return the user that has that specific email
@@ -340,14 +375,14 @@ public class Service0 implements Service<UUID>{
      * Returns the most sociable community
      * the most sociable community is the community of users with the longest path
      *
-     * @return an Iterable of users
+     * @return an Iterable of all the most sociable communities users
      */
-    public Iterable<User> mostSociableCommunity() {
+    public List<Iterable<User>> mostSociableCommunity() {
+        List<Iterable<User>> list = new ArrayList<>();
         Iterable<User> it = userRepo.findAll();
         Set<User> set = new HashSet<>();
 
         int max = -1;
-        List<User> rez = null;
         for(User u : it)
             if(!set.contains(u))
             {
@@ -355,12 +390,15 @@ public class Service0 implements Service<UUID>{
                 int l = longestPath(aux);
                 if(l > max)
                 {
-                    rez = aux;
+                    list = new ArrayList<>();
+                    list.add(aux);
                     max = l;
                 }
+                else if(l == max)
+                    list.add(aux);
             }
 
-        return rez;
+        return list;
     }
 
     /**
@@ -372,8 +410,45 @@ public class Service0 implements Service<UUID>{
      */
     private int longestPath(List<User> nodes) {
 
+        int max = 0;
 
+        for(User u : nodes)
+        {
+            int l = longestPathFromSource(u);
+            if(max < l)
+                max = l;
+        }
 
-        return 0;
+        return max;
+    }
+
+    // this function is used to initialise the set
+    private int longestPathFromSource(User source) {
+        Set<User> set = new HashSet<>();
+        return lee(source, set);
+    }
+
+    /**
+     * lee's algorithm on a graph
+     *
+     * @param source - the source node (or user)
+     * @param set - we need a map/set or frequency vector to keep track of the nodes we went through previously
+     *
+     * @return the longest path from the node source
+     */
+    private int lee(User source, Set<User> set) {
+
+        int max = -1;
+        for(User f : source.getFriends())
+            if(!set.contains(f))
+            {
+                set.add(f);
+                int l = lee(f, set);
+                if(l > max)
+                    max = l;
+                set.remove(f);
+            }
+
+        return max + 1;
     }
 }
