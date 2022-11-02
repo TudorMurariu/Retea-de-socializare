@@ -17,37 +17,45 @@ public interface Service<ID> {
      * @throws ValidationException
      *                  if the entity validation did not work.
      */
-    boolean addUser(Entity<ID> user);
+    boolean addUser(User user);
 
 
     /**
      *
-     * @param id - the id of the entity that we have to remove
+     * @param email - the id of the entity that we have to remove
      * @return the entity that was removed if there was any
      *         null otherwise
      * @throws IllegalArgumentException
      *                  if id is null
      */
-    Entity<ID> deleteUser(ID id);
+    Entity<ID> deleteUser(String email);
 
 
     /**
      *
-     * @param id1 and
-     * @param id2 - the ids of the user we have to create a friendship between
+     * @param email1 and
+     * @param email2 - the emails of the user we have to create a friendship between
      *
      * @return true if the entity was added
      *         false otherwise
      * @throws IllegalArgumentException
-     *                  if any of the ids are null
+     *                  if any of the emails are null
      * @throws ValidationException
-     *                  if the ids are the same (you cannot add yourself as a friend)
+     *                  if the emails are the same (you cannot add yourself as a friend)
      */
-    boolean createFriendship(ID id1, ID id2);
+    boolean createFriendship(String email1, String email2);
 
 
-    //TODO : deocumentation for deleteFriendship
-    boolean deleteFriendship(ID id1, ID id2);
+    /**
+     *  @param email1 and
+     *  @param email2 - the emails of the user we have to create a friendship between
+     *
+     *  @return the friendship if it exists
+     *          null otherwise
+     *  @throws IllegalArgumentException
+     *                if any of the emails are null
+     */
+    Entity<ID> deleteFriendship(String email1, String email2);
 
 
     /**
@@ -65,5 +73,12 @@ public interface Service<ID> {
     /**
      * Adds predefined users and friendships
      */
-    void Add_Predefined_Values();
+    void add_Predefined_Values();
+
+    /**
+     * @return an int that represents the number of communities
+     */
+    int numberOfCommunities();
+
+
 }

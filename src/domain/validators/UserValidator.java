@@ -42,6 +42,7 @@ public class UserValidator implements Validator<User> {
      * The first name must be less than 100 characters
      * it mustn't be empty
      * it must contain one and only one @ character
+     * --- The email must also be unique, for that we will check in the service
      */
     private void validateEmail(String email) throws ValidationException {
         if(email.length() >= 100)

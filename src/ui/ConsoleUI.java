@@ -35,8 +35,9 @@ public class ConsoleUI extends AbstractUI {
         System.out.println("7 - Show all friendships");
         System.out.println("8 - Number of communities");
         System.out.println("9 - Show the most sociable community");
+        System.out.println("10 - add predefined values");
 
-        UUID id1, id2;
+        String email1, email2, email;
 
         while(true)
         {
@@ -59,6 +60,7 @@ public class ConsoleUI extends AbstractUI {
                     System.out.println("7 - Show all friendships");
                     System.out.println("8 - Number of communities");
                     System.out.println("9 - Show the most sociable community");
+                    System.out.println("10 - add predefined values");
                     break;
 
                 case 2:
@@ -67,20 +69,20 @@ public class ConsoleUI extends AbstractUI {
                     break;
 
                 case 3:
-                    UUID id = readID();
-                    srv.deleteUser(id);
+                    email = readEmail();
+                    srv.deleteUser(email);
                     break;
 
                 case 4:
-                    id1 = readID();
-                    id2 = readID();
-                    srv.createFriendship(id1, id2);
+                    email1 = readEmail();
+                    email2 = readEmail();
+                    srv.createFriendship(email1, email2);
                     break;
 
                 case 5:
-                    id1 = readID();
-                    id2 = readID();
-                    srv.deleteFriendship(id1, id2);
+                    email1 = readEmail();
+                    email2 = readEmail();
+                    srv.deleteFriendship(email1, email2);
                     break;
 
                 case 6:
@@ -94,9 +96,14 @@ public class ConsoleUI extends AbstractUI {
                     break;
 
                 case 8:
+                    System.out.println("The number of communities is: " + srv.numberOfCommunities());
                     break;
 
                 case 9:
+                    break;
+
+                case 10:
+                    srv.add_Predefined_Values();
                     break;
                     
                 default:
@@ -128,20 +135,20 @@ public class ConsoleUI extends AbstractUI {
 
 
     /**
-     * Reads a UUID from the console and returns it.
+     * Reads an email from the console and returns it.
      *
-     * @return  The ID that was read.
+     * @return  The email that was read.
      *
      * @throws
      *
      */
 
     @Override
-    public UUID readID() {
-        System.out.print("Give an ID: ");
-        String id = cin.next();
+    public String readEmail() {
+        System.out.print("Give the email: ");
+        String email = cin.next();
 
-        return UUID.fromString(id);
+        return email;
     }
 
 

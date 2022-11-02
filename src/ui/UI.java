@@ -12,5 +12,5 @@ public interface UI {
 
     User readUser();
 
-    UUID readID();
+    String readEmail();
 }

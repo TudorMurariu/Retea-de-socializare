@@ -12,6 +12,7 @@ public class FriendShip extends Entity<UUID> {
     public FriendShip(User user1, User user2) {
         this.user1 = user1;
         this.user2 = user2;
+        this.setId(UUID.randomUUID());
     }
 
     public User getUser1() {

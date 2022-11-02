@@ -6,7 +6,9 @@ import domain.User;
 import domain.validators.ValidationException;
 import repository.Repository;
 
-public class Service0<ID> implements Service<ID>{
+import java.util.*;
+//TODO : de schimbdat din stergeri dupa id-uri in stergeri dupa email!!!!!!!!!
+public class Service0 implements Service<UUID>{
 
     private Repository userRepo;
     private Repository friendshipRepo;
@@ -24,9 +26,13 @@ public class Service0<ID> implements Service<ID>{
      * returns false if the entity isn't added
      */
     @Override
-    public boolean addUser(Entity user) {
-        Entity<ID> u = null;
+    public boolean addUser(User user) {
+        Entity<UUID> u = null;
         try{
+            if(user.getEmail() == null)
+                throw new IllegalArgumentException("The Email mustn't be null!");
+            else if(getUserByEmail(user.getEmail()) != null)
+                throw new IllegalArgumentException("There is another user with this email account!");
             u = userRepo.save(user);
         }
         catch (Exception e) {
@@ -43,16 +49,17 @@ public class Service0<ID> implements Service<ID>{
     }
 
     /**
-     * The function removes an user from the userRepo by a given ID
+     * The function removes an user from the userRepo by a given email
      * if there are anny exception we will show an error message
      * returns the user if we found one
      * and null otherwise
      */
     @Override
-    public Entity<ID> deleteUser(ID id) {
-        Entity<ID> u = null;
+    public Entity<UUID> deleteUser(String email) {
+        Entity<UUID> u = null;
         try{
-            u = userRepo.delete(id);
+            u = getUserByEmail(email);
+            u = userRepo.delete(u.getId());
         }
         catch (Exception e) {
             System.err.println(e);
@@ -60,7 +67,7 @@ public class Service0<ID> implements Service<ID>{
         }
 
         if(u == null) {
-            System.err.println("Nu exista nici o entitate cu acest id!");
+            System.err.println("Nu exista nici un user cu acest id!");
             return null;
         }
 
@@ -74,18 +81,18 @@ public class Service0<ID> implements Service<ID>{
      * returns false if the friendship isn't added
      */
     @Override
-    public boolean createFriendship(ID id1, ID id2) {
+    public boolean createFriendship(String email1, String email2) {
 
-        Entity<ID> f = null;
+        Entity<UUID> f = null;
         User u1, u2;
         try{
-            if(id1 == null || id2 == null)
-                throw new IllegalArgumentException("ids must not be null!");
+            if(email1 == null || email2 == null)
+                throw new IllegalArgumentException("Emails must not be null!");
 
-            u1 = (User) userRepo.findOne(id1);
-            u2 = (User) userRepo.findOne(id2);
-            if(u1 == null || u2 == null)
-                throw new ValidationException("There are no users with these two ids!");
+            u1 = getUserByEmail(email1);
+            u2 = getUserByEmail(email2);
+            if(u1 == null || u2 == null || u1 == u2)
+                throw new ValidationException("There are no two users with these two emails!");
 
             f = friendshipRepo.save(new FriendShip(u1, u2));
         }
@@ -108,23 +115,130 @@ public class Service0<ID> implements Service<ID>{
      * The function deletes a friendship between two users
      */
     @Override
-    public boolean deleteFriendship(ID id1, ID id2) {
-        return false;
+    public Entity<UUID> deleteFriendship(String email1, String email2) {
+        Entity<UUID> f = null;
+        User u1, u2;
+        try{
+            if(email1 == null || email2 == null)
+                throw new IllegalArgumentException("Emails must not be null!");
+
+            u1 = getUserByEmail(email1);
+            u2 = getUserByEmail(email2);
+
+            Iterable<FriendShip> l = friendshipRepo.findAll();
+            for(FriendShip el : l)
+                if(el.getUser1().getId() == u1.getId() && el.getUser2().getId() == u2.getId()
+                        || el.getUser1().getId() == u2.getId() && el.getUser2().getId() == u1.getId())
+                {
+                    f = friendshipRepo.delete(el.getId());
+                    break;
+                }
+        }
+        catch (Exception e) {
+            System.err.println(e);
+            return null;
+        }
+
+        if(f == null) {
+            System.err.println("These users are not friends!");
+            return null;
+        }
+
+        u1.removeFriend(u2);
+        u2.removeFriend(u1);
+        return f;
     }
 
+    /**
+     * @return an Iterable of all the users
+     */
     @Override
     public Iterable<User> getAllUsers() {
         return userRepo.findAll();
     }
 
+    /**
+     * @return an Iterable of all the friendships
+     */
     @Override
     public Iterable<FriendShip> getAllFriendships() {
         return friendshipRepo.findAll();
     }
 
+    /**
+     * Adds predefined users and friendships
+     */
     @Override
-    public void Add_Predefined_Values() {
+    public void add_Predefined_Values() {
+        User u1 = new User("Marian", "Popescu", "marian.popescu@yahoo.com");
+        User u2 = new User("Gabi", "Pislaru", "gabriel.pislaru@yahoo.com");
+        User u3 = new User("Stefan", "Nastasa", "stefan.nastasa@yahoo.com");
+        User u4 = new User("Stefan", "Atumulesei", "stefan.atumulesei@gmail.com");
+        User u5 = new User("Ana", "Maria", "ana.maria@gmail.com");
+        User u6 = new User("Nicu", "Margine", "nicu.hanganu@yahoo.com");
+        User u7 = new User("Nicu", "Pop", "nicu.pop@yahoo.com");
 
+        this.addUser(u1);
+        this.addUser(u2);
+        this.addUser(u3);
+        this.addUser(u4);
+        this.addUser(u5);
+        this.addUser(u6);
+        this.addUser(u7);
+
+        this.createFriendship(u1.getEmail(), u2.getEmail());
+        this.createFriendship(u1.getEmail(), u7.getEmail());
+
+        this.createFriendship(u6.getEmail(), u5.getEmail());
+        this.createFriendship(u5.getEmail(), u4.getEmail());
+        this.createFriendship(u4.getEmail(), u3.getEmail());
+    }
+
+    /**
+     * @return an int that represents the number of communities
+     *
+     * we use a DFS for each node to count the number of conex elements
+     *
+     */
+    @Override
+    public int numberOfCommunities() {
+        Iterable<User> it = userRepo.findAll();
+        Set<User> set = new HashSet<>();
+        int count = 0;
+
+        for(User u : it)
+            if(!set.contains(u))
+            {
+                ++count;
+                DFS(u, set);
+            }
+
+        return count;
+    }
+
+    /**
+     * a simple DFS algorithm
+     */
+    private void DFS(User u, Set<User> set) {
+        set.add(u);
+
+        for(User f : u.getFriends())
+            if(!set.contains(f))
+                DFS(f, set);
+    }
+
+    /**
+     * @param email a string that represents the user's email we have to find
+     *
+     * @return the user that has that specific email
+     *         or null if there is no user with that email
+     */
+    public User getUserByEmail(String email) {
+        Iterable<User> it = userRepo.findAll();
+        for(User u : it)
+            if(u.getEmail() == email)
+                return u;
+        return null;
     }
 
 }

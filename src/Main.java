@@ -18,7 +18,7 @@ public class Main {
 
         Repository<UUID, FriendShip> friendshipRepo = new InMemoryRepository<>(new FriendshipValidator());
 
-        Service<UUID> srv = new Service0<>(userRepo, friendshipRepo);
+        Service srv = new Service0(userRepo, friendshipRepo);
 
         UI console = new ConsoleUI(srv);
 

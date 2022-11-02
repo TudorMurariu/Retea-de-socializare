@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bc0c56ce-008a-491a-9f13-3a67bcb9741c" name="Changes" comment="Added createFriendship and getAllUsers in service">
-      <change afterPath="$PROJECT_DIR$/src/service/Service0.java" afterDir="false" />
+    <list default="true" id="bc0c56ce-008a-491a-9f13-3a67bcb9741c" name="Changes" comment="Documentation for Service">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domain/FriendShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/FriendShip.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repository/memory/InMemoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/memory/InMemoryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/validators/UserValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/validators/UserValidator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/Service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/AbstractUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/AbstractUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/Service0.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/Service0.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/ConsoleUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/ConsoleUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/UI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +51,15 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Retea_De_Socializare" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -77,7 +86,8 @@
       <workItem from="1667297074623" duration="308000" />
       <workItem from="1667298697284" duration="44000" />
       <workItem from="1667298776596" duration="1601000" />
-      <workItem from="1667327696201" duration="2050000" />
+      <workItem from="1667327696201" duration="7000000" />
+      <workItem from="1667390485734" duration="2632000" />
     </task>
     <task id="LOCAL-00001" summary="Schelet aplicatie">
       <created>1666856637785</created>
@@ -107,7 +117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667252005875</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Documentation for Service">
+      <created>1667329798534</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1667329798534</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -129,6 +146,7 @@
     <MESSAGE value="added UI class and stuff" />
     <MESSAGE value="Add and delete user" />
     <MESSAGE value="Added createFriendship and getAllUsers in service" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added createFriendship and getAllUsers in service" />
+    <MESSAGE value="Documentation for Service" />
+    <option name="LAST_COMMIT_MESSAGE" value="Documentation for Service" />
   </component>
 </project>

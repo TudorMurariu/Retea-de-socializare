@@ -1,22 +1,19 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 public class User extends Entity<UUID> {
     private String firstName;
     private String lastName;
 
     private String email;
-    private List<User> friends;
+    private Map<UUID, User> friends;
 
     public User(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        friends = new ArrayList<>();
+        friends = new HashMap<>();
         // generates a random unique ID
         this.setId(UUID.randomUUID());
     }
@@ -45,8 +42,8 @@ public class User extends Entity<UUID> {
         this.email = email;
     }
 
-    public List<User> getFriends() {
-        return friends;
+    public Iterable<User> getFriends() {
+        return friends.values();
     }
 
     @Override
@@ -54,8 +51,7 @@ public class User extends Entity<UUID> {
         return "Utilizator {" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", friends=" + friends + '\'' +
-                ", ID=" + id +
+                ", email=" + email +
                 '}';
     }
 
@@ -74,12 +70,12 @@ public class User extends Entity<UUID> {
 
     // adds a new friend
     public void addFriend(User u) {
-        friends.add(u);
+        friends.put(u.id, u);
     }
 
     // deletes a friend
     public boolean removeFriend(User u) {
-        return friends.remove(u);
+        return friends.remove(u.id) != null;
     }
 
 }
