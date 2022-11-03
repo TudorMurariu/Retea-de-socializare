@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bc0c56ce-008a-491a-9f13-3a67bcb9741c" name="Changes" comment="All done apart from the most sociable community">
+    <list default="true" id="bc0c56ce-008a-491a-9f13-3a67bcb9741c" name="Changes" comment="lab 5">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/Service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/Service0.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/Service0.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/ConsoleUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/ConsoleUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +82,8 @@
       <workItem from="1667327696201" duration="7000000" />
       <workItem from="1667390485734" duration="9071000" />
       <workItem from="1667405695022" duration="8566000" />
-      <workItem from="1667423850557" duration="1587000" />
+      <workItem from="1667423850557" duration="1817000" />
+      <workItem from="1667466692006" duration="721000" />
     </task>
     <task id="LOCAL-00001" summary="Schelet aplicatie">
       <created>1666856637785</created>
@@ -135,7 +134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667405599110</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="lab 5">
+      <created>1667425668681</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1667425668681</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -160,7 +166,8 @@
     <MESSAGE value="Documentation for Service" />
     <MESSAGE value="Changed a lot of function params from getting ids to getting emails." />
     <MESSAGE value="All done apart from the most sociable community" />
-    <option name="LAST_COMMIT_MESSAGE" value="All done apart from the most sociable community" />
+    <MESSAGE value="lab 5" />
+    <option name="LAST_COMMIT_MESSAGE" value="lab 5" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
