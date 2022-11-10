@@ -1,5 +1,6 @@
 package domain;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -7,10 +8,13 @@ public class FriendShip extends Entity<UUID> {
     private User user1;
     private User user2;
 
+    private LocalDateTime friendsFrom;
+
     public FriendShip(User user1, User user2) {
         this.user1 = user1;
         this.user2 = user2;
         this.setId(UUID.randomUUID());
+        friendsFrom = LocalDateTime.now();
     }
 
     public User getUser1() {
@@ -27,6 +31,10 @@ public class FriendShip extends Entity<UUID> {
 
     public void setUser2(User user2) {
         this.user2 = user2;
+    }
+
+    public LocalDateTime getFriendsFrom() {
+        return friendsFrom;
     }
 
     @Override
