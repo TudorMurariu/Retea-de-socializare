@@ -37,6 +37,10 @@ public class FriendShip extends Entity<UUID> {
         return friendsFrom;
     }
 
+    public void setFriendsFrom(LocalDateTime friendsFrom) {
+        this.friendsFrom = friendsFrom;
+    }
+
     @Override
     public String toString() {
         return "FriendShip {" +

@@ -5,7 +5,6 @@ import java.util.*;
 public class User extends Entity<UUID> {
     private String firstName;
     private String lastName;
-
     private String email;
     private Map<UUID, User> friends;
 

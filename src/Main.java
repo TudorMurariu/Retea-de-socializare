@@ -1,8 +1,11 @@
+import domain.Constants.RepoStrategy;
 import domain.FriendShip;
 import domain.User;
 import domain.validators.FriendshipValidator;
 import domain.validators.UserValidator;
 import repository.Repository;
+import repository.file.FriendshipFile;
+import repository.file.UserFile;
 import repository.memory.InMemoryRepository;
 import service.Service;
 import service.Service0;
@@ -14,9 +17,25 @@ import java.util.UUID;
 public class Main {
     public static void main(String[] args) {
 
-        Repository<UUID, User> userRepo = new InMemoryRepository<>(new UserValidator());
+        Repository<UUID, User> userRepo;
+        Repository<UUID, FriendShip> friendshipRepo;
 
-        Repository<UUID, FriendShip> friendshipRepo = new InMemoryRepository<>(new FriendshipValidator());
+        switch(RepoStrategy.valueOf(args[0]))
+        {
+
+            case file :
+                userRepo = new UserFile("user.txt", new UserValidator());
+                friendshipRepo = new FriendshipFile("friendship.txt", new FriendshipValidator());
+                break;
+
+            case database:
+
+
+            case memory:
+            default:
+                userRepo = new InMemoryRepository<>(new UserValidator());
+                friendshipRepo = new InMemoryRepository<>(new FriendshipValidator());
+        }
 
         Service srv = new Service0(userRepo, friendshipRepo);
 

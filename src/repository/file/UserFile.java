@@ -16,13 +16,13 @@ public class UserFile extends AbstractFileRepository<UUID, User> {
     public User extractEntity(List<String> attributes) {
         //TODO: implement method
         User user = new User(attributes.get(1), attributes.get(2), attributes.get(3));
-        //user.setId(Long.parseLong(attributes.get(0)));
+        user.setId(UUID.fromString(attributes.get(1)));
 
         return user;
     }
 
     @Override
     protected String createEntityAsString(User entity) {
-        return entity.getId() + ";" + entity.getFirstName() + ";" + entity.getLastName();
+        return entity.getId() + ";" + entity.getFirstName() + ";" + entity.getLastName() + ";" + entity.getEmail();
     }
 }

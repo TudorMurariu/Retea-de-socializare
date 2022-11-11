@@ -13,10 +13,10 @@ import java.util.List;
 ///Aceasta clasa implementeaza sablonul de proiectare Template Method; puteti inlucui solutia
 // propusa cu un Factori (vezi mai jos)
 public abstract class AbstractFileRepository<ID, E extends Entity<ID>> extends InMemoryRepository<ID,E> {
-    String fileName;
+    protected String fileName;
     public AbstractFileRepository(String fileName, Validator<E> validator) {
         super(validator);
-        this.fileName=fileName;
+        this.fileName = fileName;
         loadData();
 
     }
@@ -24,7 +24,7 @@ public abstract class AbstractFileRepository<ID, E extends Entity<ID>> extends I
     private void loadData() {
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String linie;
-            while((linie=br.readLine())!=null){
+            while((linie = br.readLine()) != null){
                 List<String> attr=Arrays.asList(linie.split(";"));
                 E e=extractEntity(attr);
                 super.save(e);
@@ -62,7 +62,7 @@ public abstract class AbstractFileRepository<ID, E extends Entity<ID>> extends I
 
     @Override
     public E save(E entity){
-        E e=super.save(entity);
+        E e = super.save(entity);
         if (e==null)
         {
             writeToFile(entity);
@@ -71,16 +71,14 @@ public abstract class AbstractFileRepository<ID, E extends Entity<ID>> extends I
 
     }
 
-    protected void writeToFile(E entity){
+    protected void writeToFile(E entity) {
         try (BufferedWriter bW = new BufferedWriter(new FileWriter(fileName,true))) {
             bW.write(createEntityAsString(entity));
             bW.newLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
-
 
 }
 
