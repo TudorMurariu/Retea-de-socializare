@@ -25,7 +25,7 @@ public class Main {
 
             case file :
                 userRepo = new UserFile("user.txt", new UserValidator());
-                friendshipRepo = new FriendshipFile("friendship.txt", new FriendshipValidator());
+                friendshipRepo = new FriendshipFile("friendship.txt", new FriendshipValidator(), userRepo);
                 break;
 
             case database:

@@ -12,6 +12,7 @@ public class InMemoryRepository<ID, E extends Entity<ID>> implements Repository<
     protected Validator<E> validator;
     protected Map<ID,E> entities;
 
+    public InMemoryRepository() {}
     public InMemoryRepository(Validator<E> validator) {
         this.validator = validator;
         entities = new HashMap<ID,E>();

@@ -14,24 +14,29 @@ import java.util.List;
 // propusa cu un Factori (vezi mai jos)
 public abstract class AbstractFileRepository<ID, E extends Entity<ID>> extends InMemoryRepository<ID,E> {
     protected String fileName;
+
+    public AbstractFileRepository(Validator<E> validator) {
+        super(validator);
+    }
     public AbstractFileRepository(String fileName, Validator<E> validator) {
         super(validator);
         this.fileName = fileName;
         loadData();
-
     }
 
-    private void loadData() {
+    protected void loadData() {
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String linie;
             while((linie = br.readLine()) != null){
                 List<String> attr=Arrays.asList(linie.split(";"));
-                E e=extractEntity(attr);
+                E e = extractEntity(attr);
                 super.save(e);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
