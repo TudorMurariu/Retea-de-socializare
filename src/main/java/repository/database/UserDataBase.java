@@ -16,14 +16,14 @@ public class UserDataBase extends AbstractDataBaseRepository<UUID, User> {
 
     @Override
     protected void loadData() {
-        findAll().forEach(super::save);
+        findAll_DB().forEach(super::save);
     }
 
     @Override
     public User findOne(UUID id) {
         User user = null;
         try (Connection connection = DriverManager.getConnection(url, username, password);
-             PreparedStatement statement = connection.prepareStatement("SELECT * from " + tableName + " where id = " + id.toString() + ";");
+             PreparedStatement statement = connection.prepareStatement("SELECT * from " + tableName + " where id = '" + id.toString() + "';");
              ResultSet resultSet = statement.executeQuery())
         {
             resultSet.next();
@@ -45,9 +45,8 @@ public class UserDataBase extends AbstractDataBaseRepository<UUID, User> {
         return user;
     }
 
-
     @Override
-    public Iterable<User> findAll() {
+    protected Iterable<User> findAll_DB() {
         Set<User> users = new HashSet<>();
         try (Connection connection = DriverManager.getConnection(url, username, password);
              PreparedStatement statement = connection.prepareStatement("SELECT * from " + tableName + ";");
@@ -85,7 +84,7 @@ public class UserDataBase extends AbstractDataBaseRepository<UUID, User> {
                 statement.executeQuery(sql);
             }
             catch (SQLException e) {
-
+                System.out.println(e);
             }
         }
         return u;
@@ -106,7 +105,7 @@ public class UserDataBase extends AbstractDataBaseRepository<UUID, User> {
             statement.executeUpdate(sql);
             }
             catch (SQLException e) {
-
+                System.out.println(e);
             }
         }
 

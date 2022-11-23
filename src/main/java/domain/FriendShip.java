@@ -17,6 +17,13 @@ public class FriendShip extends Entity<UUID> {
         friendsFrom = LocalDateTime.now();
     }
 
+    public FriendShip(User user1, User user2, LocalDateTime friendsFrom) {
+        this.user1 = user1;
+        this.user2 = user2;
+        this.setId(UUID.randomUUID());
+        this.friendsFrom = friendsFrom;
+    }
+
     public User getUser1() {
         return user1;
     }

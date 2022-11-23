@@ -9,8 +9,8 @@ import repository.Repository;
 import java.util.*;
 public class Service0 implements Service<UUID>{
 
-    private Repository userRepo;
-    private Repository friendshipRepo;
+    private final Repository userRepo;
+    private final Repository friendshipRepo;
 
     public Service0(Repository userRepo, Repository friendshipRepo) {
         this.userRepo = userRepo;

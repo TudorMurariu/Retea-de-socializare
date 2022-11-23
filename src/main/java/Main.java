@@ -35,7 +35,7 @@ public class Main {
                 userRepo = new UserDataBase("jdbc:postgresql://localhost:5432/Retea_De_Socializare",
                         "postgres", "postgres",  new UserValidator());
                 friendshipRepo = new FriendShipDataBase("jdbc:postgresql://localhost:5432/Retea_De_Socializare",
-                        "postgres", "postgres",  new FriendshipValidator());
+                        "postgres", "postgres",  new FriendshipValidator(), userRepo);
                 break;
 
             case memory:
