@@ -3,7 +3,6 @@ package ui;
 import domain.FriendShip;
 import domain.User;
 import service.Service;
-import service.Service0;
 
 import java.util.List;
 import java.util.Scanner;

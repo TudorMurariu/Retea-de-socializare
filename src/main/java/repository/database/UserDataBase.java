@@ -1,13 +1,10 @@
 package repository.database;
 
 import domain.User;
-import domain.validators.FriendshipValidator;
 import domain.validators.UserValidator;
-import domain.validators.Validator;
 
 import java.sql.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -19,7 +16,7 @@ public class UserDataBase extends AbstractDataBaseRepository<UUID, User> {
 
     @Override
     protected void loadData() {
-        findAll().forEach( u -> super.save(u) );
+        findAll().forEach(super::save);
     }
 
     @Override
@@ -56,7 +53,6 @@ public class UserDataBase extends AbstractDataBaseRepository<UUID, User> {
              PreparedStatement statement = connection.prepareStatement("SELECT * from " + tableName + ";");
              ResultSet resultSet = statement.executeQuery())
         {
-            System.out.println("A");
             while (resultSet.next()) {
                 UUID id = UUID.fromString(resultSet.getString("id"));
                 String firstName = resultSet.getString("firstName");
@@ -83,31 +79,37 @@ public class UserDataBase extends AbstractDataBaseRepository<UUID, User> {
         {
             try (Connection connection = DriverManager.getConnection(url, username, password)) {
                 Statement statement = connection.createStatement();
-                String sql = "INSERT INTO " + tableName + " (id, firstName, lastName, email) "
+                String sql = "INSERT INTO " + tableName + " "
                         + "VALUES ('" + entity.getId().toString() +"', '" + entity.getFirstName() + "', '"
                         + entity.getLastName() + "', '" + entity.getEmail() + "');";
-                statement.executeUpdate(sql);
+                statement.executeQuery(sql);
             }
             catch (SQLException e) {
-                e.printStackTrace();
+
             }
         }
         return u;
     }
 
     @Override
-    public User delete(UUID id) {
-        User user = super.delete(id);
-        if(user != null)
+    public User update(User entity) {
+        User user = super.update(entity);
+        if(! user.equals(entity))
         {
+            try (Connection connection = DriverManager.getConnection(url, username, password)) {
+            Statement statement = connection.createStatement();
+            String sql = "UPDATE " + tableName + " set firstName = '" + entity.getFirstName() + "' " + " where id = '" + entity.toString() + "';";
+            statement.executeUpdate(sql);
+            sql = "UPDATE " + tableName + " set lastName = '" + entity.getLastName() + "' " + " where id = '" + entity.toString() + "';";
+            statement.executeUpdate(sql);
+            sql = "UPDATE " + tableName + " set email = '" + entity.getEmail() + "' " + " where id = '" + entity.toString() + "';";
+            statement.executeUpdate(sql);
+            }
+            catch (SQLException e) {
 
+            }
         }
 
-        return  user;
-    }
-
-    @Override
-    public User update(User entity) {
-        return super.update(entity);
+        return user;
     }
 }
