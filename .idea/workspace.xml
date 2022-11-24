@@ -4,16 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="93eff30a-86f4-4806-95bb-f720cf9a8ec9" name="Changes" comment="bruh">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cc3e706b-4f96-424d-8f8e-4984262a834e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cc3e706b-4f96-424d-8f8e-4984262a834e.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cc3e706b-4f96-424d-8f8e-4984262a834e/storage_v2/_src_/database/Retea_De_Socializare.GgXA7A/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cc3e706b-4f96-424d-8f8e-4984262a834e/storage_v2/_src_/database/Retea_De_Socializare.GgXA7A/schema/public.abK9xQ.meta" afterDir="false" />
+    <list default="true" id="93eff30a-86f4-4806-95bb-f720cf9a8ec9" name="Changes" comment="Added Friendship DB">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/FriendShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/FriendShip.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/repository/database/AbstractDataBaseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/database/AbstractDataBaseRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/repository/database/FriendShipDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/database/FriendShipDataBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/repository/database/UserDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/database/UserDataBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/Service0.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/Service0.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +22,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2HvKyvbx3t6VopuSpwPN8Di1Dkg" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -79,7 +74,9 @@
       <workItem from="1669211418011" duration="3558000" />
       <workItem from="1669221924255" duration="3846000" />
       <workItem from="1669227599783" duration="4565000" />
-      <workItem from="1669232199510" duration="3017000" />
+      <workItem from="1669232199510" duration="3108000" />
+      <workItem from="1669274657238" duration="503000" />
+      <workItem from="1669277369723" duration="2686000" />
     </task>
     <task id="LOCAL-00001" summary="bruh">
       <created>1669211521239</created>
@@ -88,7 +85,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669211521239</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added Friendship DB">
+      <created>1669235276096</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1669235276096</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -107,7 +111,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="bruh" />
-    <option name="LAST_COMMIT_MESSAGE" value="bruh" />
+    <MESSAGE value="Added Friendship DB" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Friendship DB" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
