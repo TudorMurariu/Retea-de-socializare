@@ -1,4 +1,4 @@
-package com.example.reteadesocializare;
+package main;
 
 import domain.Constants.RepoStrategy;
 import domain.FriendShip;

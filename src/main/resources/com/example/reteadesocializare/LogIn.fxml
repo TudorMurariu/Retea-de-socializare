@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LogIn">
+   <children>
+      <Button fx:id="logInButton" layoutX="229.0" layoutY="263.0" mnemonicParsing="false" onAction="#onLogInButtonCLick" prefHeight="26.0" prefWidth="111.0" text="Log In" textAlignment="CENTER" />
+      <TextField fx:id="email" layoutX="210.0" layoutY="147.0" promptText="Email" />
+      <PasswordField fx:id="password" layoutX="210.0" layoutY="200.0" promptText="Password" />
+      <Hyperlink layoutX="312.0" layoutY="297.0" onAction="#onSignInClick" prefHeight="18.0" prefWidth="34.0" text="Sign in!" underline="true" wrapText="true">
+         <font>
+            <Font size="8.0" />
+         </font>
+      </Hyperlink>
+      <Label layoutX="229.0" layoutY="300.0" text="Don't have an account?">
+         <font>
+            <Font size="8.0" />
+         </font>
+      </Label>
+      <Label layoutX="198.0" layoutY="66.0" text="Welcome !">
+         <font>
+            <Font size="37.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

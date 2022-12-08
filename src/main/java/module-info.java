@@ -10,4 +10,6 @@ module com.example.reteadesocializare {
 
     opens com.example.reteadesocializare to javafx.fxml;
     exports com.example.reteadesocializare;
+    exports main;
+    opens main to javafx.fxml;
 }
