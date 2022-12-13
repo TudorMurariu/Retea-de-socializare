@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.exemple.reteadesocializare.controllers.SignIn">
+   <children>
+      <Label layoutX="159.0" layoutY="39.0" text="Create an account" textFill="#691eea">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Label>
+      <TextField layoutX="204.0" layoutY="116.0" prefHeight="26.0" prefWidth="189.0" promptText="first name" />
+      <TextField layoutX="205.0" layoutY="152.0" prefHeight="26.0" prefWidth="190.0" promptText="last name" />
+      <TextField layoutX="205.0" layoutY="188.0" prefHeight="26.0" prefWidth="190.0" promptText="email" />
+      <TextField layoutX="205.0" layoutY="222.0" prefHeight="26.0" prefWidth="190.0" promptText="password" />
+      <TextField layoutX="205.0" layoutY="258.0" prefHeight="26.0" prefWidth="190.0" promptText="confirm password" />
+      <Button fx:id="createAccount" layoutX="235.0" layoutY="310.0" mnemonicParsing="false" onAction="#onCreateAccountClick" prefHeight="30.0" prefWidth="126.0" text="Create account" textFill="#2500f7">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
+      <Button layoutX="21.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBackToLogIn" prefHeight="31.0" prefWidth="40.0" text="⬅" textFill="#0d00ff">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
