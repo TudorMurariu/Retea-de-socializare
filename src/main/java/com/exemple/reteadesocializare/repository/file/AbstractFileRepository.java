@@ -85,5 +85,28 @@ public abstract class AbstractFileRepository<ID, E extends Entity<ID>> extends I
         }
     }
 
+    @Override
+    public E delete(ID id) {
+        E entity = null;
+       try {
+           entity = super.delete(id);
+           BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+
+           super.findAll().forEach(x -> {
+               try {
+                   writer.write(createEntityAsString(x) + "\n");
+               } catch (IOException e) {
+                   e.printStackTrace();
+               }
+           });
+
+           writer.close();
+       }
+       catch (Exception e) {
+           e.printStackTrace();
+       }
+
+       return entity;
+    }
 }
 

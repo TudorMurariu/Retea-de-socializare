@@ -10,7 +10,9 @@ import com.exemple.reteadesocializare.repository.file.UserFile;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import com.exemple.reteadesocializare.repository.Repository;
 import com.exemple.reteadesocializare.service.Service;
@@ -20,12 +22,22 @@ import java.io.IOException;
 import java.util.UUID;
 
 public class MainApp extends Application {
+
+    private Color mainColorTheme;
     private Service service;
     public void setService(Service service) {
         this.service = service;
     }
     public Service getService() {
         return service;
+    }
+
+    public Color getMainColorTheme() {
+        return mainColorTheme;
+    }
+
+    public void setMainColorTheme(Color mainColorTheme) {
+        this.mainColorTheme = mainColorTheme;
     }
 
     public static void main(String[] args) {
@@ -54,7 +66,11 @@ public class MainApp extends Application {
         FXMLLoader stageLoader = new FXMLLoader();
         stageLoader.setLocation(getClass().getResource("/com.example.reteadesocializare/LogIn.fxml"));
         AnchorPane LogInLayout = stageLoader.load();
-        primaryStage.setScene(new Scene(LogInLayout));
+        primaryStage.setScene(new Scene(LogInLayout, Color.WHITE));
+        primaryStage.setTitle("App");
+
+        Image icon = new Image("/com.example.reteadesocializare/imgs/Soboclan.jpg");
+        primaryStage.getIcons().add(icon);
 
         LogIn logInController = stageLoader.getController();
         logInController.setService(this.service);

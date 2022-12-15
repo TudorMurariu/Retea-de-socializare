@@ -3,6 +3,10 @@ f3bbb6a8-be96-4deb-844c-85c43c1dfcb2;Stefan;Nastasa;stefan.nastasa@yahoo.com;1
 1d42bb43-c963-4933-a8ed-fe822fc1f243;Stefan;Atumulesei;stefan.atumulesei@gmail.com;1
 5ef9cae1-d3b5-4435-b54c-56bed73439f3;Ana;Maria;ana.maria@gmail.com;1
 3738bc59-ac3d-4615-bea9-f315556b3ed9;Nicu;Margine;nicu.hanganu@yahoo.com;1
-ef6eddc6-9da6-4f6d-a0c3-2cbdeb93bd50;Nicu;Pop;nicu.pop@yahoo.com;1
 901ad2f2-533f-4eb3-8711-ed6da0d2ed65;Andrei;Marius;oooo.marius@gmail.com;1
 4272a895-29b1-4ca8-9153-ae21dba1209f;Andrei;Popescu;andrei.popescu@gmail.com;1
+b25c1f5a-ba79-4a45-a642-dc3560ba0e3d;Catalin;Teodorescu;catalin@yahoo.com;123
+7da6412a-e43e-475a-a7d3-881eea8dcd1d;Vlad;Baicanescu;vlad_topG@yahoo.com;31423a
+d6db5d04-31ad-4c57-86ca-b1b051344c68;Rares;Perta;rares.p@gmail.com;capybara
+9f9ec0fd-242a-4fa1-b801-1df4cbd894d5;Casian;Manole;casian.manole@gmail.com;123
+ef6eddc6-9da6-4f6d-a0c3-2cbdeb93bd50;Nicu;Pop;nicu.pop@yahoo.com;1

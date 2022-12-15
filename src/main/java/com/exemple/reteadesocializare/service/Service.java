@@ -105,4 +105,22 @@ public interface Service<ID> {
      *         or null if there is no user with that email
      */
     User getUserByEmail(String email);
+
+    /**
+     * @param email1
+     * @param email2
+     */
+    void acceptFriendship(String email1, String email2);
+
+    /**
+     * @param email1
+     * @param email2
+     */
+    void declineFriendRequest(String email1, String email2);
+
+    /**
+     * @param email1
+     * @param email2
+     */
+    void createFriendRequest(String email1, String email2);
 }

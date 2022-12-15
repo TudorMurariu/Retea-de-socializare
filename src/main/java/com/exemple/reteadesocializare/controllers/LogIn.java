@@ -1,16 +1,15 @@
 package com.exemple.reteadesocializare.controllers;
 
-import com.exemple.reteadesocializare.MainApp;
 import com.exemple.reteadesocializare.domain.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import com.exemple.reteadesocializare.service.Service;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -43,15 +42,15 @@ public class LogIn {
 
     @FXML
     protected void onLogInButtonCLick(ActionEvent event) throws IOException {
-        User u = service.getUserByEmail(email.getText());
-        System.out.println(u);
+        User user = service.getUserByEmail(email.getText());
+        System.out.println(user);
 
-        if(u == null) // show a message
+        if(user == null) // show a message
         {
             emailErrorText.setVisible(true);
             passwordErrorText.setVisible(false);
         }
-        else if(!password.getText().equals(u.getPassword())) { // show a message
+        else if(!password.getText().equals(user.getPassword())) { // show a message
             passwordErrorText.setVisible(true);
             emailErrorText.setVisible(false);
         }
@@ -59,8 +58,19 @@ public class LogIn {
             emailErrorText.setVisible(false);
             passwordErrorText.setVisible(false);
 
+            FXMLLoader stageLoader = new FXMLLoader();
+            stageLoader.setLocation(getClass().getResource("/com.example.reteadesocializare/Application.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 
-            System.out.println("yay!");
+            AnchorPane appLayout = stageLoader.load();
+            Scene scene = new Scene(appLayout);
+            stage.setScene(scene);
+
+            Application appController = stageLoader.getController();
+            appController.setService(this.service);
+            appController.initApp(user);
+
+            stage.show();
         }
     }
 
@@ -80,12 +90,12 @@ public class LogIn {
         stage.show();
     }
 
-    public void onTextEntered(ActionEvent actionEvent) {
+    public void onTextChanged(KeyEvent evt) {
         emailErrorText.setVisible(false);
         passwordErrorText.setVisible(false);
     }
 
-    public void onPasswordEnterd(ActionEvent actionEvent) {
+    public void onPasswordChanged(KeyEvent evt) {
         passwordErrorText.setVisible(false);
     }
 }

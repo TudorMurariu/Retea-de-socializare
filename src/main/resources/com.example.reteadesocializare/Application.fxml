@@ -1,10 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.exemple.reteadesocializare.MainApp">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.exemple.reteadesocializare.controllers.Application">
    <children>
-      <ListView prefHeight="400.0" prefWidth="148.0" />
+      <TabPane fx:id="tabPane" layoutX="4.0" prefHeight="400.0" prefWidth="592.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab text="Peofile">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="356.0" prefWidth="484.0">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="211.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@imgs/cat.png" />
+                           </image>
+                        </ImageView>
+                        <Text fx:id="username" layoutX="219.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Popescu Marian" textAlignment="CENTER" wrappingWidth="133.9150848388672" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Friends">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ListView fx:id="friendsList" layoutY="-2.0" prefHeight="342.0" prefWidth="474.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Button layoutX="482.0" layoutY="140.0" mnemonicParsing="false" onAction="#removeFriend" text="Remove Friend" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Friends Requests">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ListView fx:id="friendsRequestList" prefHeight="342.0" prefWidth="467.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Button layoutX="496.0" layoutY="101.0" mnemonicParsing="false" onAction="#acceptFriendRequest" text="Accept" />
+                        <Button layoutX="498.0" layoutY="158.0" mnemonicParsing="false" onAction="#declineFriendRequest" text="Decline" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Settings">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="233.0" layoutY="201.0" mnemonicParsing="false" onAction="#deleteAccount" text="Delete Account" />
+                        <Button layoutX="256.0" layoutY="140.0" mnemonicParsing="false" onAction="#logOut" text="Log out" />
+                        <ColorPicker layoutX="296.0" layoutY="67.0" onDragDone="#chooseColorTheme" />
+                        <Text layoutX="141.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chose color theme :">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="All Users">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ListView fx:id="userList" prefHeight="342.0" prefWidth="441.0" />
+                        <Button layoutX="463.0" layoutY="155.0" mnemonicParsing="false" onAction="#sendRequest" text="Send Request" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
    </children>
 </AnchorPane>

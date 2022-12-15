@@ -1,6 +1,7 @@
 package com.exemple.reteadesocializare.service;
 
 import com.exemple.reteadesocializare.domain.Entity;
+import com.exemple.reteadesocializare.domain.FriendRequest;
 import com.exemple.reteadesocializare.domain.FriendShip;
 import com.exemple.reteadesocializare.domain.User;
 import com.exemple.reteadesocializare.domain.validators.ValidationException;
@@ -112,7 +113,7 @@ public class Service0 implements Service<UUID>{
             if(u1 == null || u2 == null || u1.equals(u2))
                 throw new ValidationException("There are no two users with these two emails!");
 
-            f = friendshipRepo.save(new FriendShip(u1, u2));
+            f = friendshipRepo.save(new FriendShip(u1, u2, FriendRequest.ACCEPTED));
         }
         catch (Exception e) {
             System.err.println(e);
@@ -453,4 +454,59 @@ public class Service0 implements Service<UUID>{
 
         return max + 1;
     }
+
+    public void acceptFriendship(String email1, String email2) {
+        deleteFriendship(email1, email2);
+        createFriendship(email1, email2);
+    }
+
+    public void declineFriendRequest(String email1, String email2) {
+        deleteFriendship(email1, email2);
+        Entity<UUID> f = null;
+        User u1, u2;
+        try{
+            if(email1 == null || email2 == null)
+                throw new IllegalArgumentException("Emails must not be null!");
+
+            u1 = getUserByEmail(email1);
+            u2 = getUserByEmail(email2);
+            if(u1 == null || u2 == null || u1.equals(u2))
+                throw new ValidationException("There are no two users with these two emails!");
+
+            f = friendshipRepo.save(new FriendShip(u1, u2, FriendRequest.REJECTED));
+        }
+        catch (Exception e) {
+            System.err.println(e);
+            return;
+        }
+
+        if(f != null) {
+            System.err.println("These two users are already friends!");
+        }
+    }
+
+    public void createFriendRequest(String email1, String email2) {
+        Entity<UUID> f = null;
+        User u1, u2;
+        try{
+            if(email1 == null || email2 == null)
+                throw new IllegalArgumentException("Emails must not be null!");
+
+            u1 = getUserByEmail(email1);
+            u2 = getUserByEmail(email2);
+            if(u1 == null || u2 == null || u1.equals(u2))
+                throw new ValidationException("There are no two users with these two emails!");
+
+            f = friendshipRepo.save(new FriendShip(u1, u2, FriendRequest.PENDING));
+        }
+        catch (Exception e) {
+            System.err.println(e);
+            return;
+        }
+
+        if(f != null) {
+            System.err.println("These two users are already friends!");
+        }
+    }
+
 }

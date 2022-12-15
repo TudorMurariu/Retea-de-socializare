@@ -28,6 +28,14 @@ public class FriendShip extends Entity<UUID> {
         this.acceptance = FriendRequest.PENDING;
     }
 
+    public FriendShip(User user1, User user2, FriendRequest acceptance) {
+        this.user1 = user1;
+        this.user2 = user2;
+        this.setId(UUID.randomUUID());
+        friendsFrom = LocalDateTime.now();
+        this.acceptance = acceptance;
+    }
+
     public User getUser1() {
         return user1;
     }

@@ -38,6 +38,7 @@ public class FriendshipFile extends AbstractFileRepository<UUID, FriendShip>{
             u1.addFriend(u2);
             u2.addFriend(u1);
         }
+        entity.setAcceptance(FriendRequest.valueOf(attributes.get((4))));
 
         return entity;
     }
