@@ -7,7 +7,14 @@ import com.exemple.reteadesocializare.domain.User;
 import com.exemple.reteadesocializare.domain.validators.ValidationException;
 import com.exemple.reteadesocializare.repository.Repository;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
+import java.util.List;
+
+import javafx.scene.paint.Color;
+
 public class Service0 implements Service<UUID>{
 
     private final Repository userRepo;
@@ -19,8 +26,8 @@ public class Service0 implements Service<UUID>{
     }
 
     /**
-     * The function adds an user to the userRepo
-     * if there already exists an user with that id, we will show an error message,
+     * The function adds a user to the userRepo
+     * if there already exists a user with that id, we will show an error message,
      * if there are anny exceptions we will show an error message,
      * returns true if the entity is added
      * returns false if the entity isn't added
@@ -509,4 +516,15 @@ public class Service0 implements Service<UUID>{
         }
     }
 
+    public Color getColor() {
+        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\tudor\\OneDrive\\Desktop\\Retea de socializare\\src\\main\\java\\com\\exemple\\reteadesocializare\\color.txt"))) {
+            String linie = br.readLine();
+            return Color.valueOf(linie);
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        return Color.WHITE;
+    }
 }

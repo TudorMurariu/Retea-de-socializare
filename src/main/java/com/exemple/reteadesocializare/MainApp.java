@@ -8,8 +8,10 @@ import com.exemple.reteadesocializare.domain.validators.UserValidator;
 import com.exemple.reteadesocializare.repository.file.FriendshipFile;
 import com.exemple.reteadesocializare.repository.file.UserFile;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -22,7 +24,6 @@ import java.io.IOException;
 import java.util.UUID;
 
 public class MainApp extends Application {
-
     private Color mainColorTheme;
     private Service service;
     public void setService(Service service) {
@@ -66,7 +67,7 @@ public class MainApp extends Application {
         FXMLLoader stageLoader = new FXMLLoader();
         stageLoader.setLocation(getClass().getResource("/com.example.reteadesocializare/LogIn.fxml"));
         AnchorPane LogInLayout = stageLoader.load();
-        primaryStage.setScene(new Scene(LogInLayout, Color.WHITE));
+        primaryStage.setScene(new Scene(LogInLayout, service.getColor()));
         primaryStage.setTitle("App");
 
         Image icon = new Image("/com.example.reteadesocializare/imgs/Soboclan.jpg");

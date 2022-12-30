@@ -11,20 +11,20 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.exemple.reteadesocializare.controllers.Application">
+<AnchorPane prefHeight="442.0" prefWidth="714.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.exemple.reteadesocializare.controllers.Application">
    <children>
-      <TabPane fx:id="tabPane" layoutX="4.0" prefHeight="400.0" prefWidth="592.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TabPane fx:id="tabPane" layoutX="4.0" prefHeight="442.0" prefWidth="707.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
           <Tab text="Peofile">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="356.0" prefWidth="484.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="342.0" prefWidth="584.0">
                      <children>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="211.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="282.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="282.0">
                            <image>
                               <Image url="@imgs/cat.png" />
                            </image>
                         </ImageView>
-                        <Text fx:id="username" layoutX="219.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Popescu Marian" textAlignment="CENTER" wrappingWidth="133.9150848388672" />
+                        <Text fx:id="username" layoutX="290.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Popescu Marian" textAlignment="CENTER" wrappingWidth="133.9150848388672" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="282.0" />
                      </children>
                   </AnchorPane>
             </content>
@@ -39,6 +39,11 @@
                   </AnchorPane>
             </content>
           </Tab>
+            <Tab onSelectionChanged="#enterMessages" text="Messages">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
             <Tab text="Friends Requests">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -50,18 +55,12 @@
                   </AnchorPane>
               </content>
             </Tab>
-            <Tab text="Settings">
+            <Tab text="Sent Friend Requests">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button layoutX="233.0" layoutY="201.0" mnemonicParsing="false" onAction="#deleteAccount" text="Delete Account" />
-                        <Button layoutX="256.0" layoutY="140.0" mnemonicParsing="false" onAction="#logOut" text="Log out" />
-                        <ColorPicker layoutX="296.0" layoutY="67.0" onDragDone="#chooseColorTheme" />
-                        <Text layoutX="141.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chose color theme :">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Text>
+                        <ListView fx:id="friendRequestsSent" prefHeight="386.0" prefWidth="513.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Button layoutX="557.0" layoutY="168.0" mnemonicParsing="false" onAction="#cancelFriendRequest" text="Cancel" />
                      </children>
                   </AnchorPane>
               </content>
@@ -70,8 +69,25 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ListView fx:id="userList" prefHeight="342.0" prefWidth="441.0" />
-                        <Button layoutX="463.0" layoutY="155.0" mnemonicParsing="false" onAction="#sendRequest" text="Send Request" />
+                        <ListView fx:id="userList" prefHeight="383.0" prefWidth="481.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Button layoutX="525.0" layoutY="150.0" mnemonicParsing="false" onAction="#sendRequest" prefHeight="30.0" prefWidth="103.0" text="Send Request" />
+                        <Button layoutX="525.0" layoutY="202.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="106.0" text="Send Message" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Settings">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="304.0" layoutY="220.0" mnemonicParsing="false" onAction="#deleteAccount" text="Delete Account" />
+                        <Button layoutX="327.0" layoutY="159.0" mnemonicParsing="false" onAction="#logOut" text="Log out" />
+                        <ColorPicker fx:id="colorPicker" layoutX="367.0" layoutY="86.0" onDragDone="#chooseColorTheme" />
+                        <Text layoutX="212.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chose color theme :">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Text>
                      </children>
                   </AnchorPane>
               </content>

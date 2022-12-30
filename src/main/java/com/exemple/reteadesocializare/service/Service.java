@@ -4,6 +4,7 @@ import com.exemple.reteadesocializare.domain.Entity;
 import com.exemple.reteadesocializare.domain.FriendShip;
 import com.exemple.reteadesocializare.domain.User;
 import com.exemple.reteadesocializare.domain.validators.ValidationException;
+import javafx.scene.paint.Color;
 
 import java.util.List;
 
@@ -123,4 +124,6 @@ public interface Service<ID> {
      * @param email2
      */
     void createFriendRequest(String email1, String email2);
+
+    Color getColor();
 }
