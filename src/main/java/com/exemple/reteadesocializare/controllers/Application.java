@@ -2,6 +2,7 @@ package com.exemple.reteadesocializare.controllers;
 
 import com.exemple.reteadesocializare.domain.FriendShip;
 import com.exemple.reteadesocializare.domain.User;
+import com.exemple.reteadesocializare.service.MessageService;
 import com.exemple.reteadesocializare.service.Service;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +17,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ListView;
 import javafx.scene.input.DragEvent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -44,6 +47,9 @@ public class Application implements Initializable {
     @FXML
     private ListView<String> userList;
 
+    @FXML
+    private ListView<String> messagesFriendList;
+
     private final ObservableList<String> friendsObs = FXCollections.observableArrayList();
 
     private final ObservableList<String> friendsReqObs = FXCollections.observableArrayList();
@@ -53,6 +59,7 @@ public class Application implements Initializable {
     private final ObservableList<String> userObs = FXCollections.observableArrayList();
     private User user;
     private Service service;
+    private MessageService messageService;
 
     public void setService(Service service) {
         this.service = service;
@@ -62,15 +69,20 @@ public class Application implements Initializable {
         return service;
     }
 
+    public MessageService getMessageService() {
+        return messageService;
+    }
+
+    public void setMessageService(MessageService messageService) {
+        this.messageService = messageService;
+    }
+
     public void initApp(User user) {
         this.user = user;
         username.setText(user.getFirstName() + " " + user.getLastName());
 
-        //List<String> friends_str = new ArrayList<>();
         user.getFriends().forEach(u -> friendsObs.add(u.getFirstName() + " " + u.getLastName() + " " + u.getEmail()));
-        //friendsList.getItems().addAll(friends_str);
 
-        //List<String> friends_req_str = new ArrayList<>();
         service.getAllFriendships().forEach(f -> {
             FriendShip friendShip = (FriendShip) f;
             if(friendShip.getUser2().getId().equals(user.getId()))
@@ -79,7 +91,6 @@ public class Application implements Initializable {
                                 " " + friendShip.getUser1().getEmail() + " " + friendShip.getFriendsFrom() + " "
                                 + friendShip.getAcceptance());
         });
-        //friendsRequestList.getItems().addAll(friends_req_str);
 
         service.getAllUsers().forEach(u -> {
             User user1 = (User) u;
@@ -112,6 +123,7 @@ public class Application implements Initializable {
         friendsRequestList.setItems(friendsReqObs);
         friendRequestsSent.setItems(friendsReqSentObs);
         userList.setItems(userObs);
+        messagesFriendList.setItems(friendsObs);
     }
 
     public void removeFriend() {
@@ -121,9 +133,6 @@ public class Application implements Initializable {
         String userInfo = friendsList.getSelectionModel().getSelectedItem().toString();
         String email = userInfo.split(" ")[2];
         service.deleteFriendship(email, user.getEmail());
-
-        //System.out.println(user.getEmail());
-        //System.out.println(email);
 
         friendsObs.remove(userInfo);
         friendsReqObs.removeIf(line -> {
@@ -180,6 +189,7 @@ public class Application implements Initializable {
 
         LogIn logInController = stageLoader.getController();
         logInController.setService(this.service);
+        logInController.setMessageService(messageService);
 
         stage.show();
     }
@@ -198,6 +208,7 @@ public class Application implements Initializable {
 
         LogIn logInController = stageLoader.getController();
         logInController.setService(this.service);
+        logInController.setMessageService(messageService);
 
         stage.show();
     }
@@ -235,7 +246,15 @@ public class Application implements Initializable {
     }
 
     public void enterMessages(Event event) {
-        Alert a = new Alert(Alert.AlertType.NONE);
+        //Alert a = new Alert(Alert.AlertType.NONE);
+        //a.show();
+    }
+
+    public void sendMessage(KeyEvent event) {
+        if(event.getCode() != KeyCode.ENTER)
+            return;
+
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
         a.show();
     }
 }

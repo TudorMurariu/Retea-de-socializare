@@ -1,6 +1,7 @@
 package com.exemple.reteadesocializare.controllers;
 
 import com.exemple.reteadesocializare.domain.User;
+import com.exemple.reteadesocializare.service.MessageService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,12 +33,22 @@ public class LogIn {
 
     private Service service;
 
+    private MessageService messageService;
+
     public void setService(Service service) {
         this.service = service;
     }
 
     public Service getService() {
         return service;
+    }
+
+    public MessageService getMessageService() {
+        return messageService;
+    }
+
+    public void setMessageService(MessageService messageService) {
+        this.messageService = messageService;
     }
 
     @FXML
@@ -68,6 +79,7 @@ public class LogIn {
 
             Application appController = stageLoader.getController();
             appController.setService(this.service);
+            appController.setMessageService(messageService);
             appController.initApp(user);
 
             stage.show();
@@ -80,12 +92,13 @@ public class LogIn {
         stageLoader.setLocation(getClass().getResource("/com.example.reteadesocializare/SignIn.fxml"));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 
-        AnchorPane singInLayout = stageLoader.load();
-        Scene scene = new Scene(singInLayout);
+        AnchorPane singUpLayout = stageLoader.load();
+        Scene scene = new Scene(singUpLayout);
         stage.setScene(scene);
 
-        SignIn signInController = stageLoader.getController();
-        signInController.setService(this.service);
+        SignUp signUpController = stageLoader.getController();
+        signUpController.setService(this.service);
+        signUpController.setMessageService(messageService);
 
         stage.show();
     }

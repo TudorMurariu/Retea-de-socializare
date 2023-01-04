@@ -3,6 +3,7 @@ package com.exemple.reteadesocializare.controllers;
 import com.exemple.reteadesocializare.domain.User;
 import com.exemple.reteadesocializare.domain.validators.UserValidator;
 import com.exemple.reteadesocializare.domain.validators.ValidationException;
+import com.exemple.reteadesocializare.service.MessageService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import com.exemple.reteadesocializare.service.Service;
@@ -10,14 +11,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class SignIn {
+public class SignUp {
 
     @FXML
     private TextField first_name;
@@ -41,11 +41,21 @@ public class SignIn {
 
     private UserValidator userValidator = new UserValidator();
     private Service service;
+
+    private MessageService messageService;
     public void setService(Service service) {
         this.service = service;
     }
     public Service getService() {
         return service;
+    }
+
+    public MessageService getMessageService() {
+        return messageService;
+    }
+
+    public void setMessageService(MessageService messageService) {
+        this.messageService = messageService;
     }
 
     @FXML
@@ -91,6 +101,7 @@ public class SignIn {
             Application appController = stageLoader.getController();
             appController.setService(this.service);
             appController.initApp(newUser);
+            appController.setMessageService(messageService);
 
             stage.show();
 
@@ -109,6 +120,7 @@ public class SignIn {
 
         LogIn logInController = stageLoader.getController();
         logInController.setService(this.service);
+        logInController.setMessageService(messageService);
 
         stage.show();
     }

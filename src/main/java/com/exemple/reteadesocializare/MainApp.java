@@ -2,11 +2,16 @@ package com.exemple.reteadesocializare;
 
 import com.exemple.reteadesocializare.controllers.LogIn;
 import com.exemple.reteadesocializare.domain.FriendShip;
+import com.exemple.reteadesocializare.domain.Message;
 import com.exemple.reteadesocializare.domain.User;
 import com.exemple.reteadesocializare.domain.validators.FriendshipValidator;
+import com.exemple.reteadesocializare.domain.validators.MessageValidator;
 import com.exemple.reteadesocializare.domain.validators.UserValidator;
 import com.exemple.reteadesocializare.repository.file.FriendshipFile;
+import com.exemple.reteadesocializare.repository.file.MessageFile;
 import com.exemple.reteadesocializare.repository.file.UserFile;
+import com.exemple.reteadesocializare.service.MessageService;
+import com.exemple.reteadesocializare.service.MessageService0;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +31,7 @@ import java.util.UUID;
 public class MainApp extends Application {
     private Color mainColorTheme;
     private Service service;
+    private MessageService messageService;
     public void setService(Service service) {
         this.service = service;
     }
@@ -50,14 +56,14 @@ public class MainApp extends Application {
 
         Repository<UUID, User> userRepo;
         Repository<UUID, FriendShip> friendshipRepo;
+        Repository<UUID, Message> messageRepo;
 
         userRepo = new UserFile("C:\\Users\\tudor\\OneDrive\\Desktop\\Retea de socializare\\src\\main\\java\\com\\exemple\\reteadesocializare\\user.txt", new UserValidator());
         friendshipRepo = new FriendshipFile("C:\\Users\\tudor\\OneDrive\\Desktop\\Retea de socializare\\src\\main\\java\\com\\exemple\\reteadesocializare\\friendship.txt", new FriendshipValidator(), userRepo);
-
-        //userRepo = new InMemoryRepository<>(new UserValidator());
-        //friendshipRepo = new InMemoryRepository<>(new FriendshipValidator());
+        messageRepo = new MessageFile("C:\\Users\\tudor\\OneDrive\\Desktop\\Retea de socializare\\src\\main\\java\\com\\exemple\\reteadesocializare\\messages.txt", new MessageValidator(), userRepo);
 
         service = new Service0(userRepo, friendshipRepo);
+        messageService = new MessageService0(messageRepo);
 
         initView(primaryStage);
         primaryStage.show();
@@ -75,5 +81,6 @@ public class MainApp extends Application {
 
         LogIn logInController = stageLoader.getController();
         logInController.setService(this.service);
+        logInController.setMessageService(messageService);
     }
 }
